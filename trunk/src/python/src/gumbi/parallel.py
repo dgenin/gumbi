@@ -1,5 +1,5 @@
-from gumbi import Gumbi
-from configuration import Configuration
+from .gumbi import Gumbi
+from .configuration import Configuration
 
 class Parallel(Gumbi):
 	"""

@@ -1,5 +1,5 @@
-from gumbi import *
-from debug import ScanBus
+from .gumbi import *
+from .debug import ScanBus
 
 class Monitor(Gumbi):
 	"""

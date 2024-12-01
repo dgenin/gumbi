@@ -1,5 +1,5 @@
 import os
-from gumbi import Gumbi
+from .gumbi import Gumbi
 
 class Configuration(Gumbi):
 	"""

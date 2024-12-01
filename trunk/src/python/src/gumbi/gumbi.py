@@ -101,7 +101,7 @@ class Gumbi:
 					self.port = prefix + str(n)
 					self.serial = serial.Serial(self.port)
 					break
-				except Exception, e:
+				except Exception as e:
 					last_error = str(e)
 					n += 1
 					self.port = None
@@ -172,9 +172,9 @@ class Gumbi:
 
 		Returns a 4 byte string.
 		"""
-                return struct.pack("<I", value)
+		return struct.pack("<I", value)
 
-        def Pack16(self, value):
+	def Pack16(self, value):
 		"""
 		Packs a 16-bit value for transmission to the Gumbi board.
 
@@ -182,9 +182,9 @@ class Gumbi:
 
 		Returns a 2 byte string.
 		"""
-                return struct.pack("<H", value)
+		return struct.pack("<H", value)
 
-        def PackByte(self, value):
+	def PackByte(self, value):
 		"""
 		Packs an 8-bit value for transmission to the Gumbi board.
 
@@ -192,7 +192,7 @@ class Gumbi:
 
 		Returns a 1 byte string.
 		"""
-                return chr(value)
+		return chr(value)
 
 	def PackDWords(self, data):
 		"""
@@ -207,7 +207,7 @@ class Gumbi:
 			pdata += self.Pack32(dword)
 		return pdata
 
-        def PackBytes(self, data):
+	def PackBytes(self, data):
 		"""
 		Packs an array of 8-bit values for transmission to the Gumbi board.
 
@@ -215,10 +215,10 @@ class Gumbi:
 
 		Returns a string len(data) bytes long.
 		"""
-                pdata = ''
-                for byte in data:
-                        pdata += self.PackByte(byte)
-                return pdata
+		pdata = ''
+		for byte in data:
+			pdata += self.PackByte(byte)
+		return pdata
 
 	def PackFiller(self, count):
 		"""
@@ -265,9 +265,9 @@ class Gumbi:
 		raw = self.serial.readline()
 
 		if self.DEBUG:
-			print ""
-			print "ReadText():", raw
-			print ""
+			print("")
+			print("ReadText():"), raw
+			print("")
 
 		return raw.strip()
 
@@ -289,15 +289,15 @@ class Gumbi:
 				data += self.serial.read(1)
 				if callback is not None:
 					callback(i+1, n)
-		except Exception, e:
-			print "ReadBytes():", e
+		except Exception as e:
+			print("ReadBytes():"), e
 
 		if self.DEBUG:
-			print ""
-			print "ReadBytes:", len(data)
+			print("")
+			print("ReadBytes:"), len(data)
 			for c in data:
-				print "\t0x%X" % ord(c)
-			print ""
+				print("\t0x%X") % ord(c)
+			print("")
 
 		return data
 
@@ -316,8 +316,8 @@ class Gumbi:
 				self.serial.write(data[i])
 				if callback is not None:
 					callback(i+1, n)
-		except Exception, e:
-			print "WriteBytes():", e
+		except Exception as e:
+			print("WriteBytes():"), e
 
 		return None
 
